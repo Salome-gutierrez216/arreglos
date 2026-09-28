@@ -7,35 +7,32 @@ public class CalculadoraDeNotas {
 
     public static void main(String[] args) {
 
-        String nombre = JOptionPane.showInputDialog(
-                "Ingrese su Nombre"
+        int n = Integer.parseInt(
+                JOptionPane.showInputDialog("¿Cuántos estudiantes desea registrar?")
         );
 
-        String id = JOptionPane.showInputDialog(
-                "Ingrese su ID"
-        );
+        // Arreglos paralelos: la posición i de cada arreglo pertenece al mismo estudiante
+        String[] nombres = new String[n];
+        String[] ids = new String[n];
+        double[] notasDesarrollo = new double[n];
+        double[] notasMatematica = new double[n];
 
-        double notad = Double.parseDouble(
-                JOptionPane.showInputDialog(
-                        "Digite la nota de Desarrollo"
-                )
-        );
+        for (int i = 0; i < n; i++) {
+            nombres[i] = JOptionPane.showInputDialog(
+                    "Estudiante " + (i + 1) + " - Ingrese su Nombre");
 
-        double notam = Double.parseDouble(
-                JOptionPane.showInputDialog(
-                        "Digite la nota de Matemáticas"
-                )
-        );
+            ids[i] = JOptionPane.showInputDialog(
+                    "Estudiante " + (i + 1) + " - Ingrese su ID");
 
-        Calculadora miComparador = new Calculadora(
-                id,
-                nombre,
-                notad,
-                notam
-        );
+            notasDesarrollo[i] = Double.parseDouble(
+                    JOptionPane.showInputDialog(
+                            "Estudiante " + (i + 1) + " - Digite la nota de Desarrollo"));
 
-        double definitiva = miComparador.calcularDefinitiva();
+            notasMatematica[i] = Double.parseDouble(
+                    JOptionPane.showInputDialog(
+                            "Estudiante " + (i + 1) + " - Digite la nota de Matemáticas"));
+        }
 
-        miComparador.mostrarNota();
+        JOptionPane.showMessageDialog(null, "Se registraron " + n + " estudiantes.");
     }
 }
