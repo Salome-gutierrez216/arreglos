@@ -41,12 +41,36 @@ public class CalculadoraDeNotas {
             definitivas[i] = estudiantes[i].calcularDefinitiva();
         }
 
-        // Listado de todos los estudiantes en una sola ventana
         StringBuilder listado = new StringBuilder("LISTADO DE ESTUDIANTES\n\n");
         for (int i = 0; i < n; i++) {
             listado.append(i + 1).append(". ")
                    .append(estudiantes[i].getResumen()).append("\n");
         }
         JOptionPane.showMessageDialog(null, listado.toString());
+
+        // Estadísticas recorriendo el arreglo de definitivas
+        double suma = 0;
+        int posMayor = 0;
+        int posMenor = 0;
+
+        for (int i = 0; i < n; i++) {
+            suma += definitivas[i];
+            if (definitivas[i] > definitivas[posMayor]) {
+                posMayor = i;
+            }
+            if (definitivas[i] < definitivas[posMenor]) {
+                posMenor = i;
+            }
+        }
+
+        double promedio = suma / n;
+
+        JOptionPane.showMessageDialog(null,
+                "ESTADÍSTICAS DEL GRUPO\n\n"
+                + "Promedio del grupo: " + String.format("%.2f", promedio) + "\n"
+                + "Nota más alta: " + String.format("%.2f", definitivas[posMayor])
+                + " (" + nombres[posMayor] + ")\n"
+                + "Nota más baja: " + String.format("%.2f", definitivas[posMenor])
+                + " (" + nombres[posMenor] + ")");
     }
 }
