@@ -32,7 +32,6 @@ public class CalculadoraDeNotas {
                             "Estudiante " + (i + 1) + " - Digite la nota de Matemáticas"));
         }
 
-        // Arreglo de objetos Calculadora y arreglo con las definitivas
         Calculadora[] estudiantes = new Calculadora[n];
         double[] definitivas = new double[n];
 
@@ -42,9 +41,12 @@ public class CalculadoraDeNotas {
             definitivas[i] = estudiantes[i].calcularDefinitiva();
         }
 
-        // Por ahora se muestra uno por uno
+        // Listado de todos los estudiantes en una sola ventana
+        StringBuilder listado = new StringBuilder("LISTADO DE ESTUDIANTES\n\n");
         for (int i = 0; i < n; i++) {
-            estudiantes[i].mostrarNota();
+            listado.append(i + 1).append(". ")
+                   .append(estudiantes[i].getResumen()).append("\n");
         }
+        JOptionPane.showMessageDialog(null, listado.toString());
     }
 }
