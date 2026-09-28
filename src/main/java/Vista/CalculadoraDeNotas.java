@@ -11,7 +11,6 @@ public class CalculadoraDeNotas {
                 JOptionPane.showInputDialog("¿Cuántos estudiantes desea registrar?")
         );
 
-        // Arreglos paralelos: la posición i de cada arreglo pertenece al mismo estudiante
         String[] nombres = new String[n];
         String[] ids = new String[n];
         double[] notasDesarrollo = new double[n];
@@ -33,6 +32,19 @@ public class CalculadoraDeNotas {
                             "Estudiante " + (i + 1) + " - Digite la nota de Matemáticas"));
         }
 
-        JOptionPane.showMessageDialog(null, "Se registraron " + n + " estudiantes.");
+        // Arreglo de objetos Calculadora y arreglo con las definitivas
+        Calculadora[] estudiantes = new Calculadora[n];
+        double[] definitivas = new double[n];
+
+        for (int i = 0; i < n; i++) {
+            estudiantes[i] = new Calculadora(ids[i], nombres[i],
+                    notasDesarrollo[i], notasMatematica[i]);
+            definitivas[i] = estudiantes[i].calcularDefinitiva();
+        }
+
+        // Por ahora se muestra uno por uno
+        for (int i = 0; i < n; i++) {
+            estudiantes[i].mostrarNota();
+        }
     }
 }
